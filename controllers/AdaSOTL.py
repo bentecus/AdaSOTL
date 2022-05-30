@@ -24,12 +24,15 @@ class AdaSOTL():
     Open Questions: 
         - Adaptation strength
     '''
-    def __init__(self, tl, mu, alpha, beta):
+    def __init__(self, tl, mu, alpha, beta, gamma, decayRate = 0.1):
             self.tl = tl
             self.mu = mu
             self.theta = 0
             self.alpha = alpha
             self.beta = beta
+            self.gamma = gamma
+
+            self.decayRate = decayRate
 
             self.kappa = 0
             self.phi_min = self.tl.minGreenTime
@@ -41,13 +44,13 @@ class AdaSOTL():
         if currentPhase % 2 == 0: #don´t execute SOTL if TL in yellow phase
             self.phi += 1
         for lane in self.tl.lanes:
-            lane.updateCarCount()
+            lane.updateCarCount(self.decayRate)
             if lane.isRed: 
                 self.kappa += lane.carsOnLane #change to more kappas if more than one direction has red
             
             #adaptivity
             avgCarsTowardsCrossway += lane.runningAvgCoL
-        self.theta = avgCarsTowardsCrossway**self.beta * self.alpha
+        self.theta = avgCarsTowardsCrossway**self.beta * self.alpha + self.gamma
 
         if self.phi >= self.phi_min and currentPhase % 2 == 0:
             for lane in self.tl.lanes:

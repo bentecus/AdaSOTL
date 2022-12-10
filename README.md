@@ -70,7 +70,7 @@ To run a simulation or an optimization with the cycle based controller, please n
     * In case numVehicles = 1500: ['../LPSolve/2x3Grid_a_eps0,1.lp.csv', '../LPSolve/2x3Grid_a_eps0,1.lp.csv', '../LPSolve/2x3Grid_c_eps0,1.lp.csv']
 
 ## More resources
-More information on the Poject is found in our technical report concenring the project as well as the gained results.
+More information on the project is found in our <a href="https://github.com/bentecus/AdaSOTL/blob/main/docs/Technical_Report_AdaSOTL.pdf">technical report</a> concerning the project as well as the gained results.
 
 ## About
 Contributors: Marcus Bentele, Georg Fessler, Thomas Rosenberger
